@@ -248,6 +248,13 @@ class TestFields(common.TransactionCase):
         self.assertEqual(foo1.name, 'Bar')
         self.assertEqual(foo2.name, 'Bar')
 
+        # check groups on non-stored inverse field
+        user = self.env['res.users'].create({'name': 'Foo', 'login': 'foo'})
+        self.assertFalse(user.has_group('base.group_system'))
+        self.patch(type(foo1).display_name, 'groups', 'base.group_system')
+        with self.assertRaises(AccessError):
+            foo1.sudo(user).display_name = 'Forbidden'
+
         record = self.env['test_new_api.compute.inverse']
 
         # create/write on 'foo' should only invoke the compute method
@@ -576,6 +583,29 @@ class TestFields(common.TransactionCase):
         self.assertEqual(attribute_record.company.foo, 'DEF')
         self.assertEqual(attribute_record.bar, 'DEFDEF')
         self.assertFalse(self.env.has_todo())
+
+        # add ir.rule to prevent access on record
+        self.assertTrue(user0.has_group('base.group_user'))
+        model_id = self.env['ir.model'].search([('model', '=', record._name)]).id
+        rule = self.env['ir.rule'].create({
+            'model_id': model_id,
+            'groups': [(4, self.env.ref('base.group_user').id)],
+            'domain_force': str([('id', '!=', record.id)]),
+            'perm_read': True,
+            'perm_write': True,
+            'perm_create': True,
+            'perm_unlink': True,
+        })
+        with self.assertRaises(AccessError):
+            record.sudo(user0).foo = 'forbidden'
+
+        rule.unlink()
+
+        # add group on company-dependent field
+        self.assertFalse(user0.has_group('base.group_system'))
+        self.patch(type(record).foo, 'groups', 'base.group_system')
+        with self.assertRaises(AccessError):
+            record.sudo(user0).foo = 'forbidden'
 
     def test_28_sparse(self):
         """ test sparse fields. """
