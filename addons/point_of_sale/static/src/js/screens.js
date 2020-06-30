@@ -1247,7 +1247,7 @@ var ClientListScreenWidget = ScreenWidget.extend({
     // what happens when we've just pushed modifications for a partner of id partner_id
     saved_client_details: function(partner_id){
         var self = this;
-        this.reload_partners().then(function(){
+        return this.reload_partners().then(function(){
             var partner = self.pos.db.get_partner_by_id(partner_id);
             if (partner) {
                 self.new_client = partner;
@@ -2012,6 +2012,17 @@ var PaymentScreenWidget = ScreenWidget.extend({
                             self.gui.show_screen('clientlist');
                         },
                     });
+                } else if (error.message === 'Backend Invoice') {
+                    self.gui.show_popup('confirm',{
+                        'title': _t('Please print the invoice from the backend'),
+                        'body': _t('The order has been synchronized earlier. Please make the invoice from the backend for the order: ') + error.data.order.name,
+                        confirm: function () {
+                            this.gui.show_screen('receipt');
+                        },
+                        cancel: function () {
+                            this.gui.show_screen('receipt');
+                        },
+                    });
                 } else if (error.code < 0) {        // XmlHttpRequest Errors
                     self.gui.show_popup('error',{
                         'title': _t('The order could not be sent'),
@@ -2084,6 +2095,10 @@ var set_fiscal_position_button = ActionButtonWidget.extend({
             confirm: function (fiscal_position) {
                 var order = self.pos.get_order();
                 order.fiscal_position = fiscal_position;
+                // Fix the taxes on existing lines
+                _.each(order.get_orderlines(), function (line) {
+                    order.fix_tax_included_price(line);
+                });
                 order.trigger('change');
             }
         });

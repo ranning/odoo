@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Martin Trigaux, 2018
-# Bjorn Ingvarsson <boi@exigo.is>, 2018
+# Björn Ingvarsson <boi@exigo.is>, 2018
 # Birgir Steinarsson <biggboss83@gmail.com>, 2018
 # 
 msgid ""
@@ -1332,6 +1332,13 @@ msgstr "Flokka dagbókarfærslur"
 
 #. module: point_of_sale
 #. openerp-web
+#: code:addons/point_of_sale/static/src/js/models.js:135
+#, python-format
+msgid "HTTPS connection to IoT Box failed"
+msgstr ""
+
+#. module: point_of_sale
+#. openerp-web
 #: code:addons/point_of_sale/static/src/xml/pos.xml:1322
 #, python-format
 msgid "Hardware Events"
@@ -1658,6 +1665,15 @@ msgstr "Vildarkerfi"
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_payment
 msgid "Make Payment"
 msgstr "Greiða"
+
+#. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/js/models.js:137
+#, python-format
+msgid ""
+"Make sure you are using IoT Box v18.12 or higher. Navigate to %s to accept "
+"the certificate of your IoT Box."
+msgstr ""
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_sale_config_settings_form_pos
@@ -2239,6 +2255,13 @@ msgstr "Vinsamlegast staðfestu háa upphæð"
 #, python-format
 msgid "Please define income account for this product: \"%s\" (id:%d)."
 msgstr "Vinsamlegast skilgreindu tekjureikning fyrir þessa vöru: \"%s\" (id:%d)."
+
+#. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/js/screens.js:2017
+#, python-format
+msgid "Please print the invoice from the backend"
+msgstr ""
 
 #. module: point_of_sale
 #: code:addons/point_of_sale/models/pos_order.py:446
@@ -3152,6 +3175,15 @@ msgid "The order could not be sent to the server due to an unknown error"
 msgstr "Ekki var hægt að senda pöntun til netþjóns vegna óþekktrar villu"
 
 #. module: point_of_sale
+#. openerp-web
+#: code:addons/point_of_sale/static/src/js/screens.js:2018
+#, python-format
+msgid ""
+"The order has been synchronized earlier. Please make the invoice from the "
+"backend for the order: "
+msgstr ""
+
+#. module: point_of_sale
 #: model:ir.model.fields,help:point_of_sale.field_pos_config_iface_precompute_cash
 msgid ""
 "The payment input will behave similarily to bank payment input, and will be "
@@ -3555,7 +3587,7 @@ msgstr "Notandi"
 #. module: point_of_sale
 #: model:ir.actions.report.xml,name:point_of_sale.report_user_label
 msgid "User Labels"
-msgstr ""
+msgstr "Notandamerkingar"
 
 #. module: point_of_sale
 #. openerp-web
@@ -3597,7 +3629,7 @@ msgstr "Samþykkja uppgjör og skrá færslur"
 #: model:product.product,name:point_of_sale.partner_product_6
 #: model:product.template,name:point_of_sale.partner_product_6_product_template
 msgid "Vauxoo.com"
-msgstr ""
+msgstr "Vauxoo.com"
 
 #. module: point_of_sale
 #: model:ir.model.fields,field_description:point_of_sale.field_pos_config_iface_vkeyboard
@@ -3639,7 +3671,7 @@ msgstr "Ár"
 #: model:product.product,name:point_of_sale.poivron_jaunes
 #: model:product.template,name:point_of_sale.poivron_jaunes_product_template
 msgid "Yellow Peppers"
-msgstr ""
+msgstr "Gul paprika"
 
 #. module: point_of_sale
 #: model:ir.ui.view,arch_db:point_of_sale.view_pos_session_form
@@ -3647,6 +3679,8 @@ msgid ""
 "You can define another list of available currencies on the\n"
 "                                <i>Cash Registers</i> tab of the"
 msgstr ""
+"Hægt er að búa til annan lista af sýnilegum gjaldmiðlum\n"
+"í <i>Sjóðsvélar</i> flipanum á"
 
 #. module: point_of_sale
 #: code:addons/point_of_sale/models/pos_order.py:390
@@ -3812,7 +3846,7 @@ msgstr "Póstnúmer"
 #: model:product.product,name:point_of_sale.courgette
 #: model:product.template,name:point_of_sale.courgette_product_template
 msgid "Zucchini"
-msgstr ""
+msgstr "Kúrbítur"
 
 #. module: point_of_sale
 #. openerp-web
@@ -3837,7 +3871,7 @@ msgstr "tilheyrir annarri keyrslu:"
 #: model:product.product,name:point_of_sale.partner_product_8
 #: model:product.template,name:point_of_sale.partner_product_8_product_template
 msgid "camptocamp.com"
-msgstr ""
+msgstr "camptocamp.com"
 
 #. module: point_of_sale
 #. openerp-web
